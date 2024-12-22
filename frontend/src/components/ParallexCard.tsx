@@ -28,7 +28,7 @@ const ParallexCard = ({ imageUrl, title, description, points }: Props) => {
 
             {/* Right Column (Image) */}
             <div
-                className="mobile-parallax  w-full lg:w-1/2 h-[400px] bg-fixed bg-cover bg-center rounded-lg shadow-lg"
+                className="mobile-parallax parallax  w-full lg:w-1/2 h-[400px] bg-fixed bg-cover bg-center rounded-lg shadow-lg"
                 style={{
                     backgroundImage: `url(${imageUrl})`,
                     backgroundPosition: "center",
