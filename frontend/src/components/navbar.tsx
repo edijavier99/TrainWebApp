@@ -8,12 +8,6 @@ import {
 } from "@/components/ui/sheet";
 import { ThemeToggleButton } from "./ThemeChanger";
 import { useNavigate } from "react-router-dom";
-// import { CustomModal } from '@/components/Customodal';
-// import { CustomButton } from '@/components/customButton';
-// import {  useModalContext } from '@/context/ModalContext';
-// import { useSelector } from 'react-redux';
-// import { RootState } from '@/redux/store'; // Importa el tipo de RootState
-
 
 type NavigationItem = {
   name: string;
@@ -33,18 +27,16 @@ function classNames(...classes: string[]) {
 
 export const Navbar = () => {
   const navigate = useNavigate();
-//   const {setState} = useModalContext()
-//   const walletAddress = useSelector((state: RootState) => state.wallet.address); // Accede a la dirección desde Redux
-
-//   const openModal = () =>{
-//     setState(true)
-//   }
   
-  // Verifica si la ruta actual es la página de inicio
   const isHomePage = window.location.pathname === "/";
 
   const onLogoClick = () => {
     navigate("/");
+  };
+
+  // Función para manejar el clic en los elementos de navegación
+  const handleNavigation = (href: string) => {
+    navigate(href);
   };
 
   return (
@@ -64,20 +56,20 @@ export const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden lg:flex md:px-0 sm:space-x-4 sm:ml-auto">
             {!isHomePage && (
-              <a
-                href="/"
+              <button
+                onClick={() => handleNavigation("/")}
                 className={classNames(
                   'text-[17px] hover:bg-[#FF7F50] duration-300 ease-in-out',
                   'px-3 flex items-center rounded-md text-sm font-medium'
                 )}
               >
                 Home
-              </a>
+              </button>
             )}
             {navigation.map((item) => (
-              <a
+              <button
                 key={item.name}
-                href={item.href}
+                onClick={() => handleNavigation(item.href)}
                 className={classNames(
                   item.current ? '' : 'text-[17px] hover:bg-[#FF7F50] duration-300 ease-in-out',
                   'px-3 flex items-center rounded-md text-sm font-medium'
@@ -85,16 +77,12 @@ export const Navbar = () => {
                 aria-current={item.current ? 'page' : undefined}
               >
                 {item.name}
-              </a>
+              </button>
             ))}
 
-              <div className="flex justify-end space-x-4">
-                {/* <CustomButton
-                  label={walletAddress || "Connect"} // Muestra la dirección o "Connect"
-                  iconLeft={<FaWallet />}
-                  onClick={openModal}
-                /> */}
-              </div>
+            <div className="flex justify-end space-x-4">
+              {/* Agrega otros botones si es necesario */}
+            </div>
             <ThemeToggleButton />
           </div>
 
@@ -115,20 +103,20 @@ export const Navbar = () => {
                 </SheetHeader>
                 <div className="py-3 space-y-4 ">
                   {!isHomePage && (
-                    <a
-                      href="/"
+                    <button
+                      onClick={() => handleNavigation("/")}
                       className={classNames(
                         'flex font-semibold hover:bg-[#A0CC28] duration-300 ease-in-out',
                         'rounded-md p-2 font-medium duration-300 ease-in-out'
                       )}
                     >
                       Home
-                    </a>
+                    </button>
                   )}
                   {navigation.map((item) => (
-                    <a
+                    <button
                       key={item.name}
-                      href={item.href}
+                      onClick={() => handleNavigation(item.href)}
                       aria-current={item.current ? 'page' : undefined}
                       className={classNames(
                         item.current ? 'text-xl text-black' : 'flex font-semibold hover:bg-[#FF7F50] duration-300 ease-in-out',
@@ -136,7 +124,7 @@ export const Navbar = () => {
                       )}
                     >
                       {item.name}
-                    </a>
+                    </button>
                   ))}
                 </div>
                 <ThemeToggleButton />
