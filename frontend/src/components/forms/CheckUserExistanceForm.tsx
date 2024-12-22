@@ -1,52 +1,55 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, ChangeEvent, FormEvent } from "react";
 
-export const CheckForm = () => {
-    const [showAlert, setShowAlert] = useState(false);
-    const [alertMessage, setAlertMessage] = useState("");
-    const form = useRef(); 
-    const [formData, setFormData] = useState({
-        email: "",
-    });
+interface FormData {
+  email: string;
+}
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+export const CheckForm: React.FC = () => {
+  const [showAlert, setShowAlert] = useState<boolean>(false);
+  const [alertMessage, setAlertMessage] = useState<string>("");
+  const form = useRef<HTMLFormElement | null>(null);
+  const [formData, setFormData] = useState<FormData>({ email: "" });
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const apiUrl = `${process.env.REACT_APP_BACKEND_URL}myapp/api/verify-client`;
-        fetch(apiUrl,{
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            client_email: formData.email
-          })
-        })
-        .then(res => res.json())
-        .then(data => {
-          if (data.message) {
-            setAlertMessage("Welcome back!");
-            setShowAlert(true);
-            localStorage.setItem("verified_user", true)
-            setTimeout(() => {
-              window.location.href = '/process';
-            }, 2000); 
-          } else {
-            setAlertMessage("Loading...");
-            setShowAlert(true);
-            setTimeout(() => {
-              window.location.href = '/process';
-            }, 2000); 
-          }
-        })
-        .catch(err => {
-          setAlertMessage("An unexpected error occurred.");
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const apiUrl = `${process.env.REACT_APP_BACKEND_URL}myapp/api/verify-client`;
+
+    fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        client_email: formData.email,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message) {
+          setAlertMessage("Welcome back!");
           setShowAlert(true);
-        });
-    };
+          localStorage.setItem("verified_user", "true");
+          setTimeout(() => {
+            window.location.href = "/process";
+          }, 2000);
+        } else {
+          setAlertMessage("Loading...");
+          setShowAlert(true);
+          setTimeout(() => {
+            window.location.href = "/process";
+          }, 2000);
+        }
+      })
+      .catch(() => {
+        setAlertMessage("An unexpected error occurred.");
+        setShowAlert(true);
+      });
+  };
 
   return (
     <div className="contact-form-container">
@@ -71,12 +74,10 @@ export const CheckForm = () => {
         <button className="btn btn-primary w-100 my-3 py-2" type="submit">
           Submit
         </button>
-        <p className="mt-3 mb-3 text-body-secondary">
-          © 2017–2024 
-        </p>
+        <p className="mt-3 mb-3 text-body-secondary">© 2017–2024</p>
       </form>
       {showAlert && (
-        <div className='alert alert-success' role="alert">
+        <div className="alert alert-success" role="alert">
           {alertMessage}
         </div>
       )}

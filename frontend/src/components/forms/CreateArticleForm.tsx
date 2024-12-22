@@ -7,8 +7,8 @@ import InputForm from "./InputForm";
 import { Button } from "../ui/button";
 
 const ArticleForm = () =>{
-    const cloudName = 'dhyrv5g3w';
-    const uploadPreset = 'ptwmh2mt';
+    // const cloudName = 'dhyrv5g3w';
+    // const uploadPreset = 'ptwmh2mt';
     
     const { control, handleSubmit, formState: { errors }, reset } = useForm<FormValuesArtitcle>({
         resolver: zodResolver(article),

@@ -37,9 +37,9 @@ const Objectives = () => {
   };
 
   // Función para eliminar un objetivo
-  const deleteObjective = (id: number) => {
-    setObjectives(objectives.filter((obj) => obj.id !== id));
-  };
+  // const deleteObjective = (id: number) => {
+  //   setObjectives(objectives.filter((obj) => obj.id !== id));
+  // };
 
   return (
     <div className="space-y-4">

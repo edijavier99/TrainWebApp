@@ -15,6 +15,7 @@ export const DashboardDetailCard = ({ title, value, isCurrency = false }: Props)
             </CardHeader>
             <CardContent>
                 <div className="text-2xl font-bold">
+                    {isCurrency}
                     {value}
                     {/* {isCurrency ? <FormatCurrency amount={value as number} /> : value} */}
                 </div>

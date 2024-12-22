@@ -1,9 +1,16 @@
 import { useState, useEffect } from 'react';
 
-export const useGetFetch = (url, options = {}) => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+type UseGetFetchResult<T> = {
+  data: T | null;
+  loading: boolean;
+  error: Error | null;
+  refetch: () => void;
+};
+
+export const useGetFetch = <T = any>(url: string, options: RequestInit = {}): UseGetFetchResult<T> => {
+  const [data, setData] = useState<T | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<Error | null>(null);
 
   const fetchData = async () => {
     try {
@@ -14,7 +21,7 @@ export const useGetFetch = (url, options = {}) => {
       }
       const result = await response.json();
       setData(result);
-    } catch (error) {
+    } catch (error: any) {
       setError(error);
     } finally {
       setLoading(false);

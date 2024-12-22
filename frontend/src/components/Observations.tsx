@@ -17,16 +17,16 @@ const Observations = () => {
   };
 
   // Función para eliminar una observación
-  const deleteObservation = (index: number) => {
-    const updatedObservations = observations.filter((_, i) => i !== index);
-    setObservations(updatedObservations);
-  };
+  // const deleteObservation = (index: number) => {
+  //   const updatedObservations = observations.filter((_, i) => i !== index);
+  //   setObservations(updatedObservations);
+  // };
 
   // Función para empezar a editar una observación
-  const startEditing = (index: number) => {
-    setEditingIndex(index);
-    setEditedObservation(observations[index]);
-  };
+  // const startEditing = (index: number) => {
+  //   setEditingIndex(index);
+  //   setEditedObservation(observations[index]);
+  // };
 
   // Función para guardar la observación editada
   const saveEdit = () => {

@@ -1,5 +1,5 @@
 import  { useState, useEffect } from "react";
-import { CheckForm } from "./forms/CheckUserExistanceForm";
+// import { CheckForm } from "./forms/CheckUserExistanceForm";
 import { Button } from "./ui/button";
 
 interface Slide {
