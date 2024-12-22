@@ -4,7 +4,6 @@ import { Button } from "./ui/button";
 
 interface Slide {
   id: number;
-  video?: string;
   image?: string;
   slogan: string;
   description: string;
@@ -37,22 +36,11 @@ const Carousel = ({ slides, autoplayInterval = 5000 }:CarouselProps) => {
     >
       {/* Slide Content */}
       <div className="absolute inset-0">
-        {slides[currentSlide].video ? (
-          <video
-            key={slides[currentSlide].video}
-            src={slides[currentSlide].video}
-            autoPlay
-            loop
-            muted
-            className="w-full h-full object-cover"
-          />
-        ) : (
           <img
             src={slides[currentSlide].image}
             alt="Slide Image"
             className="w-full h-full object-cover"
           />
-        )}
         {/* Overlay */}
         <div className="absolute inset-0 bg-black bg-opacity-40 z-10" />
       </div>

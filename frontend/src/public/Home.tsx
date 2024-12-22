@@ -4,6 +4,7 @@ import { Newsletter } from "@/components/landingPage/Newsletter";
 import { Reviews } from "@/components/landingPage/Reviews";
 import ParallexCard from "@/components/ParallexCard";
 import PricingPackage from "@/components/PricingPackage";
+import { ParallaxProvider } from 'react-scroll-parallax';
 
 function Home() {
 
@@ -15,6 +16,7 @@ function Home() {
       </div>
       <Introduction />
       <p className="font-bold text-[#FF7F50] text-sm">How I can Help You</p>
+      <ParallaxProvider>
       <ParallexCard
           title="Transform Your Mind, Transform Your Life"
           description="Changing your mindset is the first step to unlocking your potential. Our Mindset Empowerment program is designed to help you build positive habits, beliefs, and thought patterns that will enhance every area of your life: from emotional well-being to professional success."
@@ -47,6 +49,7 @@ function Home() {
             "Strategically plan for growth and abundance.",
           ]}
         />
+        </ParallaxProvider>
       <PricingPackage/>
       <Reviews/>
       <Newsletter />
