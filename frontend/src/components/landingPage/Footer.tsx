@@ -20,10 +20,10 @@ export const Footer = () => {
           <div className="mb-6 md:mb-0 text-center md:text-left">
             <h5 className="text-lg font-semibold mb-4">Quick Links</h5>
             <ul className="space-y-2 text-sm ">
-              <li><a href="/about" className="hover:text-[#FF7F50] duration-300">About Us</a></li>
-              <li><a href="/contact" className="hover:text-[#FF7F50] duration-300">Contact</a></li>
-              <li><a href="/privacy" className="hover:text-[#FF7F50] duration-300">Privacy Policy</a></li>
-              <li><a href="/terms" className="hover:text-[#FF7F50] duration-300">Terms of Service</a></li>
+              <li><a href="about-me/" className="hover:text-[#FF7F50] duration-300">About Us</a></li>
+              <li><a href="blog/" className="hover:text-[#FF7F50] duration-300">Blog</a></li>
+              <li><a href="privacy" className="hover:text-[#FF7F50] duration-300">Privacy Policy</a></li>
+              <li><a href="terms" className="hover:text-[#FF7F50] duration-300">Terms of Service</a></li>
             </ul>
           </div>
 

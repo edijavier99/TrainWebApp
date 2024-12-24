@@ -1,5 +1,7 @@
 import { Button } from "./ui/button";
 import { FaDumbbell, FaBrain, FaAppleAlt } from 'react-icons/fa';  // React Icons import
+import { useModalContext } from "@/context/ModalContext";
+import { CustomModal } from "./CustomModal";
 
 interface Props {
     caption: string
@@ -8,6 +10,13 @@ interface Props {
 }
 
 export const IntroductionCard = ({title, description,caption}: Props) => {
+    const { setActiveModal } = useModalContext();
+
+    const openModal = () =>{
+        setActiveModal("get-started")  
+    }
+
+      
     return (
         <article className="flex w-full py-10 flex-col  items-center md:my-[80px] space-y-10 lg:flex-row  overflow-hidden">
             <div className="flex lg:w-1/2 space-y-8 flex-col">
@@ -58,13 +67,17 @@ export const IntroductionCard = ({title, description,caption}: Props) => {
                     </article>
                 </div>
                 <div className="w-full">
-                    <Button className="mt-5 w-full lg:w-auto">Get Started</Button>
+                    <Button  onClick={openModal} className="mt-5 w-full lg:w-auto">Get Startedd</Button>
+
                 </div>
             </div>
             <div className="lg:w-1/2 flex justify-center py-[80px] lg:pt-0 lg:justify-end h-auto">
                 {/* Se añaden clases para controlar el desbordamiento */}
                 <p className="text-6xl sm:w-[75%]   text-center font-bold break-words overflow-hidden text-animated-gradient">{title}</p>
             </div>
+            <CustomModal modalId="get-started">
+            <Button className="mt-5 w-full lg:w-auto">Get Startedddddddd</Button>
+                    </CustomModal>
         </article>
     );
 };

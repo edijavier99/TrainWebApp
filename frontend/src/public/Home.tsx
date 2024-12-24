@@ -12,7 +12,7 @@ function Home() {
   return (
     <section >
       <div className="mx-[-20px]  md:mx-[-70px]">
-      <Hero  />
+        <Hero  />
       </div>
       <Introduction />
       <p className="font-bold text-[#FF7F50] text-sm">How I can Help You</p>

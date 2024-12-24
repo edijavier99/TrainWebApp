@@ -1,86 +1,40 @@
-import React, { useState, useRef, ChangeEvent, FormEvent } from "react";
+import InputForm from "./InputForm";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { userExistenceSchema,FormValuesUserExistence } from "./schemas/checkUserExistenceForm";
+import { Button } from "../ui/button";
+import { useNavigate } from "react-router-dom";
 
-interface FormData {
-  email: string;
-}
 
-export const CheckForm: React.FC = () => {
-  const [showAlert, setShowAlert] = useState<boolean>(false);
-  const [alertMessage, setAlertMessage] = useState<string>("");
-  const form = useRef<HTMLFormElement | null>(null);
-  const [formData, setFormData] = useState<FormData>({ email: "" });
+export const CheckUserExistenceForm = () => {
+  const navigate = useNavigate()
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const { control, handleSubmit, formState: { errors }, reset } = useForm<FormValuesUserExistence>({
+    resolver: zodResolver(userExistenceSchema),
+  });
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const apiUrl = `${process.env.REACT_APP_BACKEND_URL}myapp/api/verify-client`;
 
-    fetch(apiUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        client_email: formData.email,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.message) {
-          setAlertMessage("Welcome back!");
-          setShowAlert(true);
-          localStorage.setItem("verified_user", "true");
-          setTimeout(() => {
-            window.location.href = "/process";
-          }, 2000);
-        } else {
-          setAlertMessage("Loading...");
-          setShowAlert(true);
-          setTimeout(() => {
-            window.location.href = "/process";
-          }, 2000);
-        }
-      })
-      .catch(() => {
-        setAlertMessage("An unexpected error occurred.");
-        setShowAlert(true);
-      });
+  const onSubmit: SubmitHandler<FormValuesUserExistence> = async (data) => {
+    console.log(data);
+
+    navigate("/booking/")
+    reset()
   };
 
   return (
-    <div className="contact-form-container">
-      <form className="contactForm" ref={form} onSubmit={handleSubmit}>
-        <div className="row mb-3">
-          <div className="col">
-            <div className="form-floating">
-              <input
-                type="email"
-                className="form-control"
-                id="emailInput"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="name@example.com"
-                required
-              />
-              <label htmlFor="emailInput">Email</label>
-            </div>
-          </div>
-        </div>
-        <button className="btn btn-primary w-100 my-3 py-2" type="submit">
-          Submit
-        </button>
-        <p className="mt-3 mb-3 text-body-secondary">© 2017–2024</p>
-      </form>
-      {showAlert && (
-        <div className="alert alert-success" role="alert">
-          {alertMessage}
-        </div>
-      )}
-    </div>
+    <form className="space-y-5 max-w-md mx-auto" onSubmit={handleSubmit(onSubmit)}>
+      <p className="text-md text-gray-700">
+        You're one step closer to transforming your life! Enter your email below, and let’s get started on this exciting journey. Thank you for trusting us!
+      </p>
+      <InputForm
+        name="user_email"
+        label="example@gmail.com"
+        control={control}
+        type="email"
+        error={errors.user_email?.message}
+      />
+      <Button className="w-full" type="submit">Submit</Button>
+      <p className="text-center text-gray-400 text-sm">&copy; 2017-2024</p>
+  </form>
   );
 };

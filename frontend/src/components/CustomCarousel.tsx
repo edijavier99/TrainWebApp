@@ -1,6 +1,9 @@
 import  { useState, useEffect } from "react";
 // import { CheckForm } from "./forms/CheckUserExistanceForm";
 import { Button } from "./ui/button";
+import { useModalContext } from "@/context/ModalContext";
+import { CustomModal } from "./CustomModal";
+import { CheckUserExistenceForm } from "./forms/CheckUserExistanceForm";
 
 interface Slide {
   id: number;
@@ -17,6 +20,12 @@ interface CarouselProps {
 const Carousel = ({ slides, autoplayInterval = 5000 }:CarouselProps) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const { setActiveModal } = useModalContext();
+
+    const openModal = () =>{
+        setActiveModal("booking")  
+    }
+
 
   // Autoplay functionality
   useEffect(() => {
@@ -53,10 +62,14 @@ const Carousel = ({ slides, autoplayInterval = 5000 }:CarouselProps) => {
         <p className="max-w-2xl mb-6 text-lg">
           {slides[currentSlide].description}
         </p>
+        <CustomModal modalId="booking">
+          <CheckUserExistenceForm/>
+        </CustomModal>
         <Button
-        >
-          Make A Booking
-        </Button>
+          onClick={openModal}
+          >
+            Make A Booking
+          </Button>
       </div>
 
       {/* Navigation Indicators */}

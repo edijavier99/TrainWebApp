@@ -23,6 +23,8 @@ import Article from "@/public/Article";
 import ArticleDashboard from "@/components/dashboard/Articles";
 import ArticleForm from "@/components/forms/CreateArticleForm";
 import AboutUs from "@/public/AboutUs";
+import BookingCalendar from "@/components/calendar/BookingCalendar";
+import WelcomeIntro from "@/private/BookingProcess/WelcomeIntro";
 
 const Layout = () => {
 
@@ -38,6 +40,9 @@ const Layout = () => {
                                 <Route element={<Blog/>} path="blog/" />
                                 <Route element={<AboutUs/>} path="about-me/" />
                                 <Route element={<Article/>} path="blog/article/:str" />
+                                <Route element={<WelcomeIntro />} path="booking/" />
+                                <Route element={<BookingCalendar />} path="calendar/" />
+
                             </Route>
                             <Route element={<DashboardLayout />}>
                                 <Route element={<ProgressAnalytics />} path="progress/" />
