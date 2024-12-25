@@ -28,7 +28,7 @@ const InputForm = ({ name, control, label, error, type = "text" }: Props) => {
                         />
                         <label
                             htmlFor={name}
-                            className="pl-3 peer-focus:font-medium absolute top-3 text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-8 scale-75 top-2 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-[black] peer-focus:dark:text-[#FF7F50] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-8"
+                            className="pl-3 peer-focus:font-medium absolute top-3 text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-8 scale-75 top-2 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-[black] peer-focus:dark:text-[#FF7F50] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:-translate-y-8"
                         >
                             {label}
                         </label>
