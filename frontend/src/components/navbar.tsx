@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -7,7 +8,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ThemeToggleButton } from "./ThemeChanger";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 type NavigationItem = {
   name: string;
@@ -16,70 +17,65 @@ type NavigationItem = {
 };
 
 const navigation: NavigationItem[] = [
-
   { name: "My History", href: "/about-me/", current: false },
-  { name: 'Blog', href: "/blog/", current: false },
+  { name: "Blog", href: "/blog/", current: false },
   { name: "Dashboard", href: "/dashboard/", current: false },
-
 ];
 
 function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 export const Navbar = () => {
-  const navigate = useNavigate();
-  
   const isHomePage = window.location.pathname === "/";
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const onLogoClick = () => {
-    navigate("/");
-  };
-
-  // Función para manejar el clic en los elementos de navegación
-  const handleNavigation = (href: string) => {
-    navigate(href);
-  };
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <nav className="py-1 bordertext-black md:border-0">
       <div className="mx-auto">
         <div className="relative flex h-16 items-center justify-between">
           {/* Logo */}
-          <div onClick={onLogoClick} className="flex cursor-pointer space-x-3 items-center lg:px-0 justify-center">
-            <img
-              className="h-12 w-auto cursor-pointer"
-              src={"https://www.tokunize.com/assets/logo_only_black-DlYer6eb.png"}
-              alt="Tokunize"
-            />
-            <p className="italic font-bold text-2xl"></p>
+          <div
+            className="flex cursor-pointer space-x-3 items-center lg:px-0 justify-center"
+          >
+            <Link to="/">
+              <img
+                className="h-12 w-auto"
+                src={"https://www.tokunize.com/assets/logo_only_black-DlYer6eb.png"}
+                alt="Tokunize"
+              />
+            </Link>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex md:px-0 sm:space-x-4 sm:ml-auto">
             {!isHomePage && (
-              <button
-                onClick={() => handleNavigation("/")}
+              <Link
+                to="/"
                 className={classNames(
-                  'text-[17px] hover:bg-[#FF7F50] duration-300 ease-in-out',
-                  'px-3 flex items-center rounded-md text-sm font-medium'
+                  "text-[17px] hover:bg-[#FE7F50] duration-300 ease-in-out",
+                  "px-3 flex items-center rounded-md text-sm font-medium"
                 )}
               >
                 Home
-              </button>
+              </Link>
             )}
             {navigation.map((item) => (
-              <button
+              <Link
                 key={item.name}
-                onClick={() => handleNavigation(item.href)}
+                to={item.href}
                 className={classNames(
-                  item.current ? '' : 'text-[17px] hover:bg-[#FF7F50] duration-300 ease-in-out',
-                  'px-3 flex items-center rounded-md text-sm font-medium'
+                  item.current
+                    ? ""
+                    : "text-[17px] hover:bg-[#FF7F50] duration-300 ease-in-out",
+                  "px-3 flex items-center rounded-md text-sm font-medium"
                 )}
-                aria-current={item.current ? 'page' : undefined}
+                aria-current={item.current ? "page" : undefined}
               >
                 {item.name}
-              </button>
+              </Link>
             ))}
 
             <div className="flex justify-end space-x-4">
@@ -90,12 +86,23 @@ export const Navbar = () => {
 
           {/* Mobile menu button using Sheet */}
           <div className="absolute right-0 flex items-center justify-end lg:hidden">
-            <Sheet>
+            <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="outline">
                   <span className="sr-only">Open main menu</span>
-                  <svg className="block h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
+                  <svg
+                    className="block h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M4 6h16M4 12h16m-7 6h7"
+                    />
                   </svg>
                 </Button>
               </SheetTrigger>
@@ -103,30 +110,34 @@ export const Navbar = () => {
                 <SheetHeader>
                   <SheetTitle>Menu</SheetTitle>
                 </SheetHeader>
-                <div className="py-3 space-y-4 ">
+                <div className="py-3 space-y-4">
                   {!isHomePage && (
-                    <button
-                      onClick={() => handleNavigation("/")}
+                    <Link
+                      to="/"
+                      onClick={closeMenu}
                       className={classNames(
-                        'flex font-semibold hover:bg-[#A0CC28] duration-300 ease-in-out',
-                        'rounded-md p-2 font-medium duration-300 ease-in-out'
+                        "flex font-semibold hover:bg-[#FE7F50] duration-300 ease-in-out",
+                        "rounded-md p-2 font-medium duration-300 ease-in-out"
                       )}
                     >
                       Home
-                    </button>
+                    </Link>
                   )}
                   {navigation.map((item) => (
-                    <button
+                    <Link
                       key={item.name}
-                      onClick={() => handleNavigation(item.href)}
-                      aria-current={item.current ? 'page' : undefined}
+                      to={item.href}
+                      aria-current={item.current ? "page" : undefined}
+                      onClick={closeMenu}
                       className={classNames(
-                        item.current ? 'text-xl text-black' : 'flex font-semibold hover:bg-[#FF7F50] duration-300 ease-in-out',
-                        'rounded-md p-2 font-medium duration-300 ease-in-out'
+                        item.current
+                          ? "text-xl text-black"
+                          : "flex font-semibold hover:bg-[#FF7F50] duration-300 ease-in-out",
+                        "rounded-md p-2 font-medium duration-300 ease-in-out"
                       )}
                     >
                       {item.name}
-                    </button>
+                    </Link>
                   ))}
                 </div>
                 <ThemeToggleButton />
