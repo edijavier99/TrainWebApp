@@ -1,4 +1,7 @@
 import { BlogCard } from "@/components/blog/BlogCard";
+import axios from "axios"
+import { useEffect } from "react";
+// import WebSocketComponent from "./WebScoket";
 
 const dummyArticles = [
     {
@@ -28,6 +31,27 @@ const dummyArticles = [
 ];
 
 const Blog = () => {
+
+    const getAllArticles = async () => {
+        try {
+            const apiUrl = `${import.meta.env.VITE_BACKEND_URL}api/articles/`;
+            const response = await axios.get(apiUrl, {
+                headers: {
+                    "Content-Type": "application/json", // Especifica el tipo de contenido esperado
+                },
+            });
+            console.log();
+            (response); // Actualiza el estado con los artículos obtenidos
+        } catch (err) {
+            console.error("Error fetching articles:", err);
+        } finally {
+        }
+    };
+    useEffect(()=>{
+        getAllArticles();
+
+    },[])
+
     return (
         <section>
             <div className="text-center space-y-5 py-[60px]">
@@ -47,6 +71,7 @@ const Blog = () => {
                     <BlogCard key={article.id} article={article} />
                 ))}
             </div>
+            {/* <WebSocketComponent/> */}
         </section>
     );
 };
