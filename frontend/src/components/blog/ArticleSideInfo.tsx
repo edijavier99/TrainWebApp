@@ -1,6 +1,12 @@
 import { FaInstagram,FaFacebook,FaWhatsapp } from "react-icons/fa";
 
-const ArticleSideInfo = () => {
+interface Props {
+  readingTime: number;
+  articleCategory: string;
+  articleDayPosted: string;
+}
+
+const ArticleSideInfo = ({readingTime,articleCategory,articleDayPosted}: Props) => {
     return (
       <aside className="w-full">
         {/* Article Metadata */}
@@ -9,15 +15,15 @@ const ArticleSideInfo = () => {
           <ul className="space-y-2">
             <li className="flex justify-between items-center text-gray-600">
               <span className="text-sm font-semibold">Date</span>
-              <span className="text-sm text-gray-600">23-03-24</span>
+              <span className="text-sm text-gray-600">{articleDayPosted}</span>
             </li>
             <li className="flex justify-between items-center text-gray-600">
               <span className="text-sm font-semibold">Category</span>
-              <span className="text-sm text-gray-600">Fitness</span>
+              <span className="text-sm text-gray-600">{articleCategory.charAt(0).toUpperCase()+articleCategory.slice(1)}</span>
             </li>
             <li className="flex justify-between items-center text-gray-600">
               <span className="text-sm font-semibold">Reading</span>
-              <span className="text-sm text-gray-600">10 minutes</span>
+              <span className="text-sm text-gray-600">{readingTime} minutes</span>
             </li>
           </ul>
         </div>

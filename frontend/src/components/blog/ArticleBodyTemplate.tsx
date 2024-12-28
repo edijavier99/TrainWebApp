@@ -1,13 +1,10 @@
-
-
-
 export interface ArticleProps {
   first_section: string;
   second_section: string;
   third_section: string;
   fourth_section?: string;
   five_section?: string;
-  image_urls: { url: string }[];
+  image_urls: string[];
 }
 
 
@@ -25,7 +22,7 @@ const ArticleBodyTemplate = ({first_section,second_section,third_section,fourth_
               {image_urls[1] && (
                 <figure className="my-8">
                   <img
-                    src={image_urls[1].url || "fallback-image-url.jpg"}
+                    src={image_urls[1] || "fallback-image-url.jpg"}
                     alt="Second illustrative image"
                     className="w-full h-[300px] object-cover rounded-lg"
                   />
@@ -41,7 +38,7 @@ const ArticleBodyTemplate = ({first_section,second_section,third_section,fourth_
               {image_urls[2] && (
                 <figure className="my-8">
                   <img
-                    src={image_urls[2].url || "fallback-image-url.jpg"}
+                    src={image_urls[2] || "fallback-image-url.jpg"}
                     alt="Third illustrative image"
                     className="w-full h-[300px] object-cover rounded-lg"
                   />
@@ -57,7 +54,7 @@ const ArticleBodyTemplate = ({first_section,second_section,third_section,fourth_
               {image_urls[3] && (
                 <figure className="my-8">
                   <img
-                    src={image_urls[3].url || "fallback-image-url.jpg"}
+                    src={image_urls[3] || "fallback-image-url.jpg"}
                     alt="Fourth illustrative image"
                     className="w-full h-[300px] object-cover rounded-lg"
                   />
@@ -73,7 +70,7 @@ const ArticleBodyTemplate = ({first_section,second_section,third_section,fourth_
               {image_urls[4] && (
                 <figure className="my-8">
                   <img
-                    src={image_urls[4].url || "fallback-image-url.jpg"}
+                    src={image_urls[4] || "fallback-image-url.jpg"}
                     alt="Fifth illustrative image"
                     className="w-full h-[300px] object-cover rounded-lg"
                   />

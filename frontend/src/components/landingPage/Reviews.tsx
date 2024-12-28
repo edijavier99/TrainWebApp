@@ -42,10 +42,10 @@ export const Reviews = () => {
         className="p-5 rounded-lg shadow-lg transition-transform transform hover:-translate-y-1 hover:shadow-xl"
       >
         <div className="flex items-center mb-4">
-            <span className="p-2 border-2 border-dotted border-[#FF7F50] rounded-full text-[#FF7F50]">
+            <span className="p-2 border-2  border-dotted border-[#FF7F50] rounded-full  text-[#FF7F50]">
             <img
               className="w-12 h-12 rounded-full object-cover"
-              alt="author-img"
+              alt={item.name}
               src={item.img}
             />
           </span>

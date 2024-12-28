@@ -86,8 +86,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'JesusApp',  # Cambia esto por el nombre de tu base de datos
+        'USER': 'postgres',  # Cambia esto por tu usuario de PostgreSQL
+        'PASSWORD': 'Ilargia1234',  # Cambia esto por tu contraseña
+        'HOST': '127.0.0.1',  # O la dirección de tu servidor PostgreSQL
+        'PORT': '5432',  # Puerto predeterminado para PostgreSQL
     }
 }
 
@@ -141,9 +145,11 @@ REST_FRAMEWORK = {
         'rest_framework.throttling.UserRateThrottle',  # Limita a los usuarios autenticados
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '5/minute',  # Limita a 5 solicitudes por minuto para usuarios anónimos
-        'user': '10/minute',  # Limita a 10 solicitudes por minuto para usuarios autenticados
+        'anon': '100/minute',  # Limita a 5 solicitudes por minuto para usuarios anónimos
+        'user': '100/minute',  # Limita a 10 solicitudes por minuto para usuarios autenticados
     },
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,  # Número de elementos por página
 }
 
 
@@ -175,3 +181,7 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+
+
+

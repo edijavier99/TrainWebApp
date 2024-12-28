@@ -16,17 +16,17 @@ const WelcomeIntro = () => {
           </p>
         </div>
 
-        <div className="mt-8 bg-[#FF7F50] rounded-lg p-6 border">
-          <h4 className="text-xl font-bold text-black">Agenda for Our First Meeting:</h4>
-          <ul className="mt-4 space-y-4 text-gray-600 list-disc list-inside">
+        <div className="mt-8  rounded-lg p-6 border">
+          <h4 className="text-xl font-bold">Agenda for Our First Meeting:</h4>
+          <ul className="mt-4 space-y-4  list-disc list-inside">
             <li>
-              <span className="font-medium text-black">Welcome and Introduction:</span> We'll start with a warm welcome and a brief introduction to get to know you better.
+              <span className="font-bold ">Welcome and Introduction:</span> We'll start with a warm welcome and a brief introduction to get to know you better.
             </li>
             <li>
-              <span className="font-medium text-black">Goal Discussion:</span> We'll discuss your personal goals and what you hope to achieve.
+              <span className="font-bold">Goal Discussion:</span> We'll discuss your personal goals and what you hope to achieve.
             </li>
             <li>
-              <span className="font-medium text-black">Personalized Planning:</span> Together, we'll create a plan tailored to your specific needs and preferences.
+              <span className="font-bold">Personalized Planning:</span> Together, we'll create a plan tailored to your specific needs and preferences.
             </li>
           </ul>
         </div>

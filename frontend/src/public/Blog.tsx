@@ -1,79 +1,136 @@
+import { useState, useEffect } from "react";
 import { BlogCard } from "@/components/blog/BlogCard";
-import axios from "axios"
-import { useEffect } from "react";
-// import WebSocketComponent from "./WebScoket";
+import { useGetAxiosRequest } from "@/hooks/useGetAxiosRequest";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import { Article } from "@/types";
 
-const dummyArticles = [
-    {
-        id: 1,
-        image_url: "https://images.unsplash.com/photo-1627483298423-03e2e972431c?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        category: "Fitness",
-        title: "5 Exercises to Boost Your Energy Levels",
-        description: "Discover simple yet effective exercises that can help you stay energized throughout the day.",
-        day_posted: "March 20, 2024",
-    },
-    {
-        id: 2,
-        image_url: "https://images.unsplash.com/photo-1526724038726-3007ffb8025f?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        category: "Mindset",
-        title: "The Power of Positive Thinking",
-        description: "Learn how cultivating positivity can transform your life and help you achieve your goals.",
-        day_posted: "March 18, 2024",
-    },
-    {
-        id: 3,
-        image_url: "https://images.unsplash.com/photo-1666307582184-c58dc3703166?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        category: "Health Tips",
-        title: "10 Simple Habits for a Healthier Lifestyle",
-        description: "Adopt these easy-to-follow habits to improve your overall well-being and stay on track.",
-        day_posted: "March 15, 2024",
-    },
-];
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+  PaginationEllipsis,
+} from "@/components/ui/pagination"; // Importación de los componentes de paginación
 
 const Blog = () => {
+  const [page, setPage] = useState(1); // Estado para la página actual
 
-    const getAllArticles = async () => {
-        try {
-            const apiUrl = `${import.meta.env.VITE_BACKEND_URL}api/articles/`;
-            const response = await axios.get(apiUrl, {
-                headers: {
-                    "Content-Type": "application/json", // Especifica el tipo de contenido esperado
-                },
-            });
-            console.log();
-            (response); // Actualiza el estado con los artículos obtenidos
-        } catch (err) {
-            console.error("Error fetching articles:", err);
-        } finally {
-        }
-    };
-    useEffect(()=>{
-        getAllArticles();
+  // Realizamos la solicitud con el parámetro de página
+  const { data, loading, error } = useGetAxiosRequest<{
+    count: number;
+    next: string | null;
+    previous: string | null;
+    results: Article[];
+  }>(`${import.meta.env.VITE_BACKEND_URL}api/articles/?page=${page}`);
 
-    },[])
+  useEffect(() => {
+    // Cuando cambie la página, el hook useEffect se activará y actualizará la URL
+  }, [page]);
 
-    return (
-        <section>
-            <div className="text-center space-y-5 py-[60px]">
-                <p className="font-bold text-[#FF7F50] text-sm">Blog</p>
-                <h2 className="font-bold text-4xl">Welcome To Your Source of Inspiration</h2>
-                <p className="text-[#667085] text-medium w-[90%] md:w-[50%] mx-auto">
-                    Explore articles packed with actionable fitness tips, strategies for a strong mindset, health improvement ideas, and everyday advice that makes a difference. Our blog is here to inspire and support you, no matter your goals.
-                </p>
-                <div className="flex items-center flex-col justify-center">
-                    <span className="text-sm text-gray-400 mt-2">
-                        Your privacy matters to us. Learn more in our <a href="/privacy-policy/" className="underline">Privacy Policy</a>
-                    </span>
-                </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-10">
-                {dummyArticles.map((article) => (
-                    <BlogCard key={article.id} article={article} />
-                ))}
-            </div>
-            {/* <WebSocketComponent/> */}
-        </section>
-    );
+  const handleNextPage = () => {
+    if (data && data.next) {
+      setPage((prevPage) => prevPage + 1); // Aumenta la página si hay una página siguiente
+    }
+  };
+
+  const handlePrevPage = () => {
+    if (data && data.previous) {
+      setPage((prevPage) => prevPage - 1); // Disminuye la página si hay una página anterior
+    }
+  };
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  if (error) {
+    return <p className="text-center text-red-500">Failed to load articles. Please try again later.</p>;
+  }
+
+  if (!data || data.results.length === 0) {
+    return <p className="text-center text-gray-500">No articles available at the moment.</p>;
+  }
+
+  // Calculando el número total de páginas a partir del total de artículos y artículos por página
+  const totalPages = Math.ceil(data.count / 10); // Ajustar según el número de artículos por página
+
+  return (
+    <section>
+      <div className="text-center space-y-5 py-[60px]">
+        <p className="font-bold text-[#FF7F50] text-sm">Blog</p>
+        <h2 className="font-bold text-4xl">Welcome To Your Source of Inspiration</h2>
+        <p className="text-[#667085] text-medium w-[90%] md:w-[50%] mx-auto">
+          Explore articles packed with actionable fitness tips, strategies for a strong mindset, health improvement ideas, and everyday advice that makes a difference. Our blog is here to inspire and support you, no matter your goals.
+        </p>
+        <div className="flex items-center flex-col justify-center">
+          <span className="text-sm text-gray-400 mt-2">
+            Your privacy matters to us. Learn more in our{" "}
+            <a href="/privacy-policy/" className="underline">Privacy Policy</a>
+          </span>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-10">
+        {data.results.map((article) => (
+          <BlogCard key={article.artitle_title} article={article} />
+        ))}
+      </div>
+
+      {/* Componente de Paginación de ShadCN */}
+      <Pagination>
+        <PaginationContent>
+          {/* Página Anterior */}
+          <PaginationItem>
+            <PaginationPrevious
+              href="#"
+              onClick={handlePrevPage}
+            />
+          </PaginationItem>
+
+          {/* Página 1 */}
+          {page > 1 && (
+            <PaginationItem>
+              <PaginationLink href="#" onClick={() => setPage(1)}>
+                1
+              </PaginationLink>
+            </PaginationItem>
+          )}
+
+          {/* Páginas intermedias */}
+          {page > 2 && <PaginationItem><PaginationEllipsis /></PaginationItem>}
+
+          {/* Página actual */}
+          <PaginationItem>
+            <PaginationLink href="#" isActive>
+              {page}
+            </PaginationLink>
+          </PaginationItem>
+
+          {/* Páginas posteriores */}
+          {page < totalPages - 1 && <PaginationItem><PaginationEllipsis /></PaginationItem>}
+
+          {/* Página Final */}
+          {page < totalPages && (
+            <PaginationItem>
+              <PaginationLink href="#" onClick={() => setPage(totalPages)}>
+                {totalPages}
+              </PaginationLink>
+            </PaginationItem>
+          )}
+
+          {/* Página Siguiente */}
+          <PaginationItem>
+            <PaginationNext
+              href="#"
+              onClick={handleNextPage}
+            />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    </section>
+  );
 };
 
 export default Blog;

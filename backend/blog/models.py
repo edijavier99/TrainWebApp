@@ -45,6 +45,13 @@ class Article(models.Model):
         ]
         # También se puede agregar un índice único si es necesario
         unique_together = ('artitle_title', 'article_slug')  # Asegura que cada artículo tiene un slug único
+    
+    def get_first_image(self):
+        """Devuelve la primera imagen del array de URLs, o None si no hay imágenes."""
+        if isinstance(self.article_images, list) and self.article_images:
+            return self.article_images[0]  # Retorna la primera URL del array
+        return None  # Retorna None si no hay imágenes
+    
 
 class Comment(models.Model):
     

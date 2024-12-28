@@ -19,7 +19,7 @@ import ProgressAnalytics from "@/components/dashboard/ProgessAnalytics";
 import Profile from "@/components/dashboard/Profile";
 import Appointments from "@/components/dashboard/Appointments";
 import Blog from "@/public/Blog";
-import Article from "@/public/Article";
+import ArticleView from "@/public/Article";
 import ArticleDashboard from "@/components/dashboard/Articles";
 import ArticleForm from "@/components/forms/CreateArticleForm";
 import AboutUs from "@/public/AboutUs";
@@ -39,7 +39,7 @@ const Layout = () => {
                                 <Route element={<Home/>} path="/" />
                                 <Route element={<Blog/>} path="blog/" />
                                 <Route element={<AboutUs/>} path="about-me/" />
-                                <Route element={<Article/>} path="blog/article/:str" />
+                                <Route element={<ArticleView/>} path="blog/article/:str" />
                                 <Route element={<WelcomeIntro />} path="booking/" />
                                 <Route element={<BookingCalendar />} path="calendar/" />
 
