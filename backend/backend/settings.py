@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',  # Django REST Framework
     'corsheaders',  # Django CORS Headers
     'channels',  # Añadir Channels aquí
+    'clients'
 
 ]
 
@@ -155,6 +156,7 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',  # Agrega la URL de tu frontend (React)
+    'http://localhost:5173'
 ]
 
 

@@ -53,7 +53,7 @@ class Article(models.Model):
     
 
 class BlogSubscriber(models.Model):
-    subscriber_email = models.EmailField(unique=True, validators=[EmailValidator()])
+    subscriber_email = models.EmailField(unique=True, validators=[EmailValidator()], verbose_name="subscription email")
     subscribed_at = models.DateTimeField(default=timezone.now)
     is_active = models.BooleanField(default=True)
  
@@ -70,6 +70,6 @@ class BlogSubscriber(models.Model):
         return f"{self.subscriber_name or self.subscriber_email}"
 
     class Meta:
-        verbose_name = "Blog Subscriber"
+        verbose_name = "Subscriber"
         verbose_name_plural = "Blog Subscribers"
         ordering = ['-subscribed_at']

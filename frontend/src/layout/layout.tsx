@@ -25,7 +25,8 @@ import ArticleForm from "@/components/forms/CreateArticleForm";
 import AboutUs from "@/public/AboutUs";
 import BookingCalendar from "@/components/calendar/BookingCalendar";
 import WelcomeIntro from "@/private/BookingProcess/WelcomeIntro";
-import { Toaster } from "@/components/ui/toaster";
+// import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "sonner";
 
 const Layout = () => {
 

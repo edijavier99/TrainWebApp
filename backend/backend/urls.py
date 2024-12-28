@@ -21,5 +21,7 @@ from backend.routing import websocket_urlpatterns  # Sin 'backend.'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('blog.urls')),  
+    path('api/client/', include('clients.urls')),  # Prefijo distinto para las rutas de clientes
 ]   
+
 urlpatterns += websocket_urlpatterns

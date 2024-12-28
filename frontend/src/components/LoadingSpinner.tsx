@@ -2,9 +2,9 @@ import { ImSpinner } from "react-icons/im";
 
 const LoadingSpinner= () => {
   return (
-    <div className="flex  justify-center mt-4">
-      <div className="loader">
-        <ImSpinner   className="spinner text-[#0D6EFD] text-xl animate-spin"/>
+    <div className="flex min-h-screen items-center justify-center">
+      <div className="loader flex items-center justify-center">
+        <ImSpinner   className="spinner text-[#FF7F50] text-xl animate-spin"/>
       </div>
     </div>
   );

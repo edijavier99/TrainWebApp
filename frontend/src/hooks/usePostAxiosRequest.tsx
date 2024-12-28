@@ -5,20 +5,20 @@ import axios, { AxiosRequestConfig } from 'axios';
 interface FetchState<T> {
   data: T | null;
   loading: boolean;
-  error: string | null;
+  error: any | null; // Error puede ser cualquier cosa (string, objeto, etc.)
 }
 
 // Hook para solicitudes POST
 export const usePostAxiosRequest = <T, U>(
-  url: string, // Se pasa la URL directamente como parámetro del hook
+  url: string,
   onSuccess?: (data: T) => void,
-  onError?: (error: string) => void
-): [FetchState<T>, (dataToPost: U) => Promise<T | void>] => { // Cambié el tipo de la promesa a T | void
+  onError?: (error: any) => void // Error ahora tiene tipo genérico
+): [FetchState<T>, (dataToPost: U) => Promise<void>] => {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<any | null>(null);
 
-  const postData = useCallback(async (dataToPost: U): Promise<T | void> => { // Cambié el tipo de retorno de la función a Promise<T | void>
+  const postData = useCallback(async (dataToPost: U) => {
     setLoading(true);
     setError(null);
 
@@ -31,21 +31,20 @@ export const usePostAxiosRequest = <T, U>(
 
       const response = await axios.post<T>(url, dataToPost, config);
       setData(response.data);
+
       if (onSuccess) {
         onSuccess(response.data);
       }
-      return response.data; // Regresa los datos de la respuesta
     } catch (err) {
       const errorMessage = axios.isAxiosError(err)
-        ? err.response?.data?.subscriber_email || 'Error en la respuesta del servidor.'
-        : 'Error inesperado al hacer la solicitud.';
+        ? err.response?.data // Esto será el objeto completo del error devuelto por el servidor
+        : { message: 'Error inesperado al hacer la solicitud.' }; // En caso de error no esperado
 
       setError(errorMessage);
+
       if (onError) {
         onError(errorMessage);
       }
-      console.error('Error posting data:', err);
-      return; // En caso de error, no devolvemos ningún dato
     } finally {
       setLoading(false);
     }

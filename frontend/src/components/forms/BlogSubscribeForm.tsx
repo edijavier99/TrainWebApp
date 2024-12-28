@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { usePostAxiosRequest } from "@/hooks/usePostAxiosRequest";
-import { useToast } from "@/hooks/use-toast";
+import { toast } from "sonner"
 
 // Definir el tipo para la respuesta de la API y la solicitud
 interface SubscriberData {
@@ -10,51 +10,56 @@ interface SubscriberData {
 }
 
 const BlogSubscribeForm = () => {
-  const { toast } = useToast();
-
   const [subscriberEmail, setSubscriberEmail] = useState<string>("");
-  const [{ loading, error }, postData] = usePostAxiosRequest<SubscriberData, { subscriber_email: string }>(`${import.meta.env.VITE_BACKEND_URL}api/susbcribers/`);
+  const [{ loading, error, data }, postData] = usePostAxiosRequest<
+    SubscriberData,
+    { subscriber_email: string }
+  >(`${import.meta.env.VITE_BACKEND_URL}api/susbcribers/`);
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setSubscriberEmail(value);
+    setSubscriberEmail(e.target.value);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!subscriberEmail) {
-      return; // No hacer nada si el email está vacío
+      toast.error("Error", {
+        description: "Please provide a valid email address.",
+        className:"bg-red-500 border-0"
+      })
+      return;
     }
+
     const dataToPost = { subscriber_email: subscriberEmail };
-
-    // Llamar al hook para realizar la solicitud POST
-    await postData(dataToPost);
-
-    // Verificar el estado de la solicitud
-    if (!loading) {
-      if (error) {
-        // Si hay un error, mostrar el error en el toast
-        toast({
-          title: "Error",
-          description: error,
-          variant: "destructive",
-        });
-      } else {
-        // Si no hay error, mostrar éxito en el toast
-        toast({
-          title: "Success",
-          description: "You are now subscribed to our blog!",
-          variant: "default",
-        });
-        setSubscriberEmail(""); // Limpiar el campo después de la suscripción exitosa
-      }
-    }
+    postData(dataToPost); // Realiza la solicitud POST
   };
 
+  // Manejo de los efectos secundarios cuando cambia el estado de la respuesta (data o error)
+  useEffect(() => {
+    if (data) {
+      toast.success("Success", {
+        description: "You are now subscribed to our blog!",
+      })
+      setSubscriberEmail(""); // Limpiar el campo después de la suscripción exitosa
+    }
+
+    if (error) {
+      toast.error("Error", {
+        description: error.subscriber_email,
+        className:"bg-red-500 border-0"
+      })
+    }
+  }, [data, error, toast]);
+
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
-      <label className="hidden" htmlFor="subscriberEmail">Subscriber Email</label>
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3"
+    >
+      <label className="hidden" htmlFor="subscriberEmail">
+        Subscriber Email
+      </label>
       <Input
         id="subscriberEmail"
         name="subscriberEmail"
