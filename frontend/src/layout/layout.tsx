@@ -25,12 +25,15 @@ import ArticleForm from "@/components/forms/CreateArticleForm";
 import AboutUs from "@/public/AboutUs";
 import BookingCalendar from "@/components/calendar/BookingCalendar";
 import WelcomeIntro from "@/private/BookingProcess/WelcomeIntro";
+import { Toaster } from "@/components/ui/toaster";
 
 const Layout = () => {
 
     return (
         <div>
             <BrowserRouter>
+                <Toaster />
+
                 <ScrollToTop>
 
                     {/* <Elements stripe={stripePromise}> */}

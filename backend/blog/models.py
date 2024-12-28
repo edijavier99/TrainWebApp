@@ -1,9 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
 import math
-
-# Create your models here.
-
+from django.core.validators import EmailValidator
+from django.utils import timezone
 
 class Article(models.Model):
     artitle_title = models.CharField(max_length=100)
@@ -53,9 +52,24 @@ class Article(models.Model):
         return None  # Retorna None si no hay imágenes
     
 
-class Comment(models.Model):
-    
-    title = models.CharField(max_length=100)
+class BlogSubscriber(models.Model):
+    subscriber_email = models.EmailField(unique=True, validators=[EmailValidator()])
+    subscribed_at = models.DateTimeField(default=timezone.now)
+    is_active = models.BooleanField(default=True)
+ 
+    # Métodos de utilidad
     def __str__(self):
-        return self.title
-    
+        return f"{self.subscriber_name or self.subscriber_email}"
+
+    def unsubscribe(self):
+        """Método para cancelar la suscripción."""
+        self.is_active = False
+        self.save()
+
+    def __str__(self):
+        return f"{self.subscriber_name or self.subscriber_email}"
+
+    class Meta:
+        verbose_name = "Blog Subscriber"
+        verbose_name_plural = "Blog Subscribers"
+        ordering = ['-subscribed_at']

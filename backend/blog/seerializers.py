@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Article
+from .models import Article,BlogSubscriber
 
 
 class ArticleSerializerBlog(serializers.ModelSerializer):
@@ -21,4 +21,13 @@ class ArticleSerializer(serializers.ModelSerializer):
         model = Article
         fields = '__all__'
 
+
+# SERILIAZER FOR THE BLOG SUSBCRIBERS 
+class SubscriberSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = BlogSubscriber
+        fields = [
+            "subscriber_email"
+        ]
 

@@ -53,7 +53,6 @@ const Blog = () => {
     return <p className="text-center text-gray-500">No articles available at the moment.</p>;
   }
 
-  // Calculando el número total de páginas a partir del total de artículos y artículos por página
   const totalPages = Math.ceil(data.count / 10); // Ajustar según el número de artículos por página
 
   return (

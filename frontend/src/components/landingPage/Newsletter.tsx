@@ -1,5 +1,4 @@
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import BlogSubscribeForm from "../forms/BlogSubscribeForm";
 
 export const Newsletter = () => {
   return (
@@ -20,14 +19,7 @@ export const Newsletter = () => {
             maintaining a balanced fitness lifestyle.
           </p>
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-            <Input
-              className="bg-white text-black"
-              type="email"
-              placeholder="your@gmail.com"
-            />
-            <Button>
-              Sign Up
-            </Button>
+            <BlogSubscribeForm/>
           </div>
         </div>
       </div>
