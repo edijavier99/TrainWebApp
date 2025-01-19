@@ -26,7 +26,7 @@ export const CheckUserExistenceForm = () => {
 
     try {
       // Realizar la llamada HTTP directamente usando axios
-      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}api/clients/${email}`);
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}api/client/verify/${email}`);
 
       // Si la respuesta es exitosa (200), redirigir a la página del calendario
       if (response.status === 200) {

@@ -1,47 +1,66 @@
-"use client"
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
-import { toast } from "sonner"
-import { Button } from "@/components/ui/button"
-
-// Componente con confirmación y manejo de carga
 interface ToastWithConfirmProps {
-  title: string; // Título del botón que recibimos como prop
-  onConfirm: () => void; // Función que se ejecutará cuando se confirme
-  loading: boolean; // Estado de carga
-  event: string; // Evento que se mostrará en el toast
-  description: string; // Descripción que se mostrará en el toast
+  title: string;
+  onConfirm: () => void;
+  loading?: boolean;
+  event: string;
+  description: string;
+  isDisabled?: boolean; // Nueva prop para controlar si el botón está deshabilitado
 }
 
-export const ToastWithConfirm = ({ title, onConfirm, loading, event, description }: ToastWithConfirmProps) => {
+export const ToastWithConfirm = ({
+  title,
+  onConfirm,
+  loading,
+  event,
+  description,
+  isDisabled = false, // Default a 'false' si no se pasa la prop
+}: ToastWithConfirmProps) => {
+  const [isToastActive, setIsToastActive] = useState(false);
+
   const handleShowToast = () => {
-    const id = toast.warning(event, { // Usamos el prop `event` para el mensaje principal
-      description: description, // Usamos el prop `description` para la descripción del evento
+    if (isToastActive) return; // Prevent showing multiple toasts at the same time
+
+    setIsToastActive(true);
+
+    const id = toast.warning(event, {
+      description: description,
       className: "bg-yellow-400 border-0 border-none",
-      duration: 10000, // El toast se cierra después de 10 segundos
+      duration: 10000,
       action: {
         label: "Confirm",
         onClick: () => {
-          onConfirm(); // Llamamos a la función de confirmación pasada por props
-          toast.dismiss(id); // Cerrar el toast
+          onConfirm();
+          toast.dismiss(id);
+          setIsToastActive(false);
         },
       },
       cancel: {
         label: "Close",
         onClick: () => {
-          toast.dismiss(id); // Cerrar el toast cuando se hace clic en "Close"
+          toast.dismiss(id);
+          setIsToastActive(false);
         },
       },
-    })
-  }
+    });
+
+    const timeout = setTimeout(() => {
+      setIsToastActive(false);
+    }, 10000);
+
+    return () => clearTimeout(timeout);
+  };
 
   return (
     <Button
-      variant="outline"
       type="button"
       onClick={handleShowToast}
-      disabled={loading} // Desactivar el botón mientras se está cargando
+      disabled={isDisabled || loading || isToastActive} // Deshabilitar el botón según 'isDisabled'
     >
-      {loading ? "Loading..." : title} {/* Cambiar el texto según el estado de carga */}
+      {loading ? "Loading..." : title}
     </Button>
-  )
-}
+  );
+};

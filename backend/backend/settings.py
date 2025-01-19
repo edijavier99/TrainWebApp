@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',  # Django REST Framework
     'corsheaders',  # Django CORS Headers
     'channels',  # Añadir Channels aquí
-    'clients'
+    'clients',
+    'appointments'
 
 ]
 
