@@ -11,6 +11,7 @@ channels = {extras = ["daphne"], version = "*"}
 channels-redis = "*"
 psycopg2-binary = "*"
 whitenoise = "*"
+gunicorn = "*"
 
 [dev-packages]
 
