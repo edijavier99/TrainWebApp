@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'blog',  # Tu aplicación personalizada
     'rest_framework',  # Django REST Framework
     'corsheaders',  # Django CORS Headers
-    'channels',  # Añadir Channels aquí
+    'channels',  # Añadir Channels aquíiiii
     'clients',
     'appointments',
     'whitenoise',
