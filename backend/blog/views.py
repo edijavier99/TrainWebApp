@@ -15,15 +15,14 @@ from rest_framework.pagination import PageNumberPagination
 
 
 
-class ArticleListApiView(APIView): 
-    # Usamos la clase personalizada de throttling
+class ArticleListApiView(APIView):
     throttle_classes = [CustomAnonRateThrottle, UserRateThrottle]
 
     @method_decorator(cache_page(60 * 15), name='dispatch')  # Cachea la respuesta durante 15 minutos
     def get(self, request):
         try:
-            # Obtener todos los artículos
-            all_articles = Article.objects.all()
+            # Obtener todos los artículos, ahora ordenados
+            all_articles = Article.objects.all().order_by('article_day_posted')  # Or use any other field
             
             # Crear la instancia de paginación
             paginator = PageNumberPagination()

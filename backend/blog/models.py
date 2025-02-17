@@ -38,13 +38,13 @@ class Article(models.Model):
         return self.artitle_title
     
     class Meta:
-        # Definir índices para mejorar la búsqueda y el rendimiento de consultas
         indexes = [
-            models.Index(fields=['article_slug']),  # Índice para la búsqueda por slug
+            models.Index(fields=['article_slug']),  
         ]
-        # También se puede agregar un índice único si es necesario
-        unique_together = ('artitle_title', 'article_slug')  # Asegura que cada artículo tiene un slug único
-    
+        unique_together = ('artitle_title', 'article_slug')
+        ordering = ['-article_day_posted']  # Default ordering by date posted
+
+        
     def get_first_image(self):
         """Devuelve la primera imagen del array de URLs, o None si no hay imágenes."""
         if isinstance(self.article_images, list) and self.article_images:
