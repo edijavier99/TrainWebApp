@@ -6,7 +6,7 @@ from .models import Article,BlogSubscriber
 from .seerializers import ArticleSerializer,ArticleSerializerBlog,SubscriberSerializer
 from django.views.decorators.cache import cache_page
 from django.utils.decorators import method_decorator
-from .consumer import ChatConsumer
+# from .consumer import ChatConsumer
 # Importar la clase personalizada de throttling
 from throttling import CustomAnonRateThrottle  # Asegúrate de que la ruta sea correcta
 from rest_framework.throttling import UserRateThrottle
