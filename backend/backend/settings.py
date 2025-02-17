@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-=fk=0)8sjiwmlf5j1$)-vv$)(inu57q)!w_p_f7!%7m%$6po52
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'whale-app-itx3k.ondigitalocean.app'
+]
 
 
 # Application definition
