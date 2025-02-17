@@ -43,12 +43,15 @@ INSTALLED_APPS = [
     'corsheaders',  # Django CORS Headers
     'channels',  # Añadir Channels aquí
     'clients',
-    'appointments'
+    'appointments',
+    'whitenoise',
+
 
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',  # Agregar CORS al inicio
     'django.contrib.sessions.middleware.SessionMiddleware',  # Debe ir primero
     'django.middleware.common.CommonMiddleware',
@@ -134,6 +137,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -184,6 +191,8 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+
 
 
 
