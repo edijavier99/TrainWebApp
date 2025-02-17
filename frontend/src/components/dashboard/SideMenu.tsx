@@ -35,7 +35,7 @@ const SideMenu: React.FC<SideMenuProps> = ({ data, onMenuClick }) => {
   };
 
   return (
-    <aside className="absolute md:static w-full md:w-auto h-[50px] md:h-auto">
+    <aside className="absolute  md:static w-full md:w-auto h-[50px] md:h-auto">
       <div className="md:hidden p-4 flex justify-between items-center border-b">
         <div onClick={() => navigate("/")}>
           <h1 className="text-xl font-bold">Dashboard</h1>
@@ -46,7 +46,7 @@ const SideMenu: React.FC<SideMenuProps> = ({ data, onMenuClick }) => {
       </div>
 
       <div
-        className={`fixed  md:sticky md:top-0 h-screen  md:flex z-50 top-0 left-0 h-full w-52 bg-white p-5 border-r transform ${
+        className={`fixed  md:sticky md:top-0 h-screen  md:flex z-50 top-0 left-0 h-full w-52  p-5 border-r transform ${
           menuOpen ? 'translate-x-0' : '-translate-x-full'
         } transition-transform duration-300 ease-in-out  md:translate-x-0 flex flex-col justify-between`}
       >
