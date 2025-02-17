@@ -27,7 +27,12 @@ SECRET_KEY = 'django-insecure-=fk=0)8sjiwmlf5j1$)-vv$)(inu57q)!w_p_f7!%7m%$6po52
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'whale-app-itx3k.ondigitalocean.app'
+    'whale-app-itx3k.ondigitalocean.app',
+    '127.0.0.1'
+]
+CORS_ALLOWED_ORIGINS = [
+    'https://whale-app-itx3k.ondigitalocean.app', 
+    'http://127.0.0.1:8000',
 ]
 
 
@@ -99,9 +104,9 @@ DATABASES = {
         'USER': os.getenv('DATABASE_USER'),
         'PASSWORD': os.getenv('DATABASE_PASSWORD'),
         'HOST': os.getenv('DATABASE_HOST'),
-        'PORT': os.getenv('DATABASE_PORT'),
+        'PORT': 25060,
         'OPTIONS': {
-            'sslmode': os.getenv('DATABASE_SSLMODE'),
+            'sslmode': "require",
         },
     }
 }
@@ -167,10 +172,6 @@ REST_FRAMEWORK = {
 }
 
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  # Agrega la URL de tu frontend (React)
-    'http://localhost:5173'
-]
 
 
 # settings.py
