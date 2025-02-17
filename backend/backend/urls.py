@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from backend.routing import websocket_urlpatterns  # Sin 'backend.'
+# from backend.routing import websocket_urlpatterns  # Sin 'backend.'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +24,4 @@ urlpatterns = [
     path('api/client/', include('clients.urls')),  # Prefijo distinto para las rutas de clientes
 ]   
 
-urlpatterns += websocket_urlpatterns
+# urlpatterns += websocket_urlpatterns
