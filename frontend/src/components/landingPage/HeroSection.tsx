@@ -7,23 +7,30 @@ export const Hero = () => {
     {
       id: 1,
       image: "https://images.pexels.com/photos/5036843/pexels-photo-5036843.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      slogan: "Small steps brings significant changes",
+      slogan: "Small steps brings significant results",
       description:
-        "Transforming your life begins with changing your mindset. Embrace positivity, set realistic goals, and believe in yourself. Small changes, when consistent, lead to big results. We'll guide you every step of the way.",
+        "Transforming your life begins with changing your mindset. Embrace positivity, set realistic goals, and believe .",
     },
     {
       id: 2,
       image: "https://images.pexels.com/photos/8436932/pexels-photo-8436932.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      slogan: "Nurture Your Soul",
+      slogan: "Calm The Storm",
       description:
-        "Meditation calms the mind, reduces stress, and promotes inner peace. By incorporating mindful meditation into your routine, you can enhance mental clarity, achieve emotional balance, and foster a deeper sense of well-being.",
+        "Meditation calms the mind, reduces stress, and promotes inner peace. By incorporating mindful meditation into your routine,",
     },
     {
       id: 3,
       image: "https://images.pexels.com/photos/6388972/pexels-photo-6388972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      slogan: "Fitness fuels the mind",
+      slogan: "Keep Moving",
       description:
-        "Regular physical activity is a powerful tool for mental clarity and emotional resilience. Engaging in the right fitness routine tailored to your lifestyle will not only boost your physical health but also enhance your mindset and overall well-being.",
+        "Regular physical activity is a powerful tool for mental clarity and emotional resilience. Engaging in the right fitness routine tailored to your lifestyle will not",
+    },
+    {
+      id: 4,
+      image: "https://images.pexels.com/photos/6388972/pexels-photo-6388972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      slogan: "What You Eat Matters",
+      description:
+        "Regular physical activity is a powerful tool for mental clarity and emotional resilience. Engaging in the right fitness routine tailored to your lifestyle will not",
     },
   ];
 

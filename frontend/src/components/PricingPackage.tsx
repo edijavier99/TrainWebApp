@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 
 const PricingPackage = () => {
   const pricingOptions = [
-    { sessions: 1, price: 25, description: "Perfect for trying it out." },
+    { sessions: 1, price: 55, description: "Perfect for trying it out." },
     { sessions: 6, price: 130, description: "Best for short-term commitment." },
     { sessions: 12, price: 250, description: "Maximize your transformation." },
   ];

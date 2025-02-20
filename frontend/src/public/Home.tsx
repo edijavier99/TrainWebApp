@@ -18,7 +18,7 @@ function Home() {
       <p className="font-bold text-[#FF7F50] text-sm">How I can Help You</p>
       <ParallaxProvider>
       <ParallexCard
-          title="Transform Your Mind, Transform Your Life"
+          title="Small Steps"
           description="Changing your mindset is the first step to unlocking your potential. Our Mindset Empowerment program is designed to help you build"
           imageUrl="https://images.unsplash.com/photo-1554244933-d876deb6b2ff?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           points={[
@@ -29,7 +29,7 @@ function Home() {
         />
 
         <ParallexCard
-          title="Conscious Relationships, Deep Connections"
+          title="Nurture your soul"
           description="Success in relationships begins with a clear and empathetic mindset. These sessions are tailored to help you identify destructive "
           imageUrl="https://images.unsplash.com/photo-1554244933-d876deb6b2ff?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           points={[
@@ -40,7 +40,18 @@ function Home() {
         />
 
         <ParallexCard
-          title="Leave Scarcity Behind, Embrace Abundance"
+          title="Keep moving"
+          description="Transform how you view money and opportunities. Our coaching sessions will guide you to adopt an abundance mindset, enabling you to"
+          imageUrl="https://images.unsplash.com/photo-1554244933-d876deb6b2ff?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          points={[
+            "Identify limiting beliefs around money and success.",
+            "Establish routines that attract opportunities.",
+            "Strategically plan for growth and abundance.",
+          ]}
+        />
+
+        <ParallexCard
+          title="What you eat matters"
           description="Transform how you view money and opportunities. Our coaching sessions will guide you to adopt an abundance mindset, enabling you to"
           imageUrl="https://images.unsplash.com/photo-1554244933-d876deb6b2ff?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           points={[

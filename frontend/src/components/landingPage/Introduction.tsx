@@ -36,7 +36,7 @@ export const Introduction = () => {
             <div className="min-h-screen">
                 <div className="flex flex-col lg:space-x-8 space-y-10 lg:space-y-0 lg:flex-row">
                     <div className="lg:w-1/2 space-y-6">
-                        <p className="font-bold text-[#FF7F50] text-sm">Jesus Antonio</p>
+                        <p className="font-bold text-[#FF7F50] text-sm"></p>
                         <h1 className="text-6xl sm:text-6xl  font-bold text-center lg:text-left">EXPERIENCED PERSONAL COACH</h1>
                         <p className="text-gray-500">{introPersonalInfo}</p>
                         <Button onClick={handleOnClick} className="w-full lg:w-auto">About Me</Button>

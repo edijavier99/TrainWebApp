@@ -22,21 +22,8 @@ export const IntroductionCard = ({title, description,caption}: Props) => {
             <div className="flex lg:w-1/2 space-y-8 flex-col">
                 <p className="font-bold text-[#FF7F50] text-sm">{caption}</p>
                 <p className="text-gray-500">{description}</p>
-                <div className="grid grid-cols-1 md:grid-cols-3 pt-8 gap-6">
-                    {/* Fitness Section */}
-                    <article className="flex flex-col">
-                        <div >
-                            <div className="flex flex-col items-center sm:items-start">
-                                <span className="icon-container text-2xl">
-                                    <FaDumbbell />
-                                </span>
-                                <h6 className="feature-title text-lg font-semibold mt-2">Fitness</h6>
-                                <p className="card-text text-gray-500 mt-2">
-                                    Achieve your fitness goals with tailored workouts.
-                                </p>
-                            </div>
-                        </div>
-                    </article>
+                <div className="grid grid-cols-1 md:grid-cols-4 pt-8 gap-6">
+               
                     {/* Mindset Section */}
                     <article className="flex flex-col">
                         <div>
@@ -44,7 +31,7 @@ export const IntroductionCard = ({title, description,caption}: Props) => {
                         <span className="icon-container text-2xl">
                                     <FaBrain />
                                 </span>
-                                <h6 className="feature-title text-lg font-semibold mt-2">Mindset</h6>
+                                <h6 className="feature-title text-lg font-semibold mt-2">Support</h6>
                                 <p className="card-text text-gray-500 mt-2">
                                     Develop mental resilience through coaching.
                                 </p>
@@ -52,6 +39,19 @@ export const IntroductionCard = ({title, description,caption}: Props) => {
                         </div>
                     </article>
                     {/* Nutrition Section */}
+                    <article className="flex flex-col">
+                        <div>
+                        <div className="flex flex-col items-center sm:items-start">
+                        <span className="icon-container text-2xl">
+                                    <FaAppleAlt />
+                                </span>
+                                <h6 className="feature-title text-lg font-semibold mt-2">Guidance </h6>
+                                <p className="card-text text-gray-500 mt-2">
+                                    Optimize your diet for better health and performance.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
                     <article className="flex flex-col">
                         <div>
                         <div className="flex flex-col items-center sm:items-start">

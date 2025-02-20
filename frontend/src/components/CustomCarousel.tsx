@@ -56,10 +56,10 @@ const Carousel = ({ slides, autoplayInterval = 5000 }:CarouselProps) => {
 
       {/* Slide Text */}
       <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4">
-        <h1 className="text-4xl md:text-7xl font-bold mb-4">
+        <h1 className="text-4xl md:text-8xl font-bold mb-4">
           {slides[currentSlide].slogan}
         </h1>
-        <p className="max-w-2xl mb-6 text-lg">
+        <p className="max-w-2xl mb-6 text-xl">
           {slides[currentSlide].description}
         </p>
         <CustomModal modalId="booking">
