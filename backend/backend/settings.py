@@ -102,19 +102,21 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 # Para la base de datos
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DATABASE_NAME'),
-        'USER': os.getenv('DATABASE_USER'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
-        'HOST': os.getenv('DATABASE_HOST'),
-        'PORT': 25060,
+        'NAME': 'jesuscoach',
+        'USER': 'jesuscoach',
+        'PASSWORD': 'AVNS_uHeOYVdL_MNTBbnlQdZ',
+        'HOST': 'app-dcc3d4f2-9f36-4653-9feb-bcfe09c05e88-do-user-18711454-0.j.db.ondigitalocean.com',
+        'PORT': '25060',
         'OPTIONS': {
-            'sslmode': "require",
+            'sslmode': 'require',
         },
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
