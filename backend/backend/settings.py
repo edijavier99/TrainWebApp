@@ -187,6 +187,8 @@ X_FRAME_OPTIONS = 'DENY'  # Esto evitará que tu página se cargue dentro de un 
 
 ASGI_APPLICATION = 'backend.asgi.application'
 
+
+
 # settings.py
 
 # CHANNEL_LAYERS = {
