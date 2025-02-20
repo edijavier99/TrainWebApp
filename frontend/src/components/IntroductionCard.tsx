@@ -1,5 +1,5 @@
 import { Button } from "./ui/button";
-import { FaDumbbell, FaBrain, FaAppleAlt } from 'react-icons/fa';  // React Icons import
+import {  FaBrain, FaAppleAlt } from 'react-icons/fa';  // React Icons import
 import { useModalContext } from "@/context/ModalContext";
 import { CustomModal } from "./CustomModal";
 
