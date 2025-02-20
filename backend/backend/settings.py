@@ -27,12 +27,17 @@ SECRET_KEY = 'django-insecure-=fk=0)8sjiwmlf5j1$)-vv$)(inu57q)!w_p_f7!%7m%$6po52
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'whale-app-itx3k.ondigitalocean.app',
-    '127.0.0.1'
+    'whale-app-itx3k.ondigitalocean.app',  # Tu servidor de producción en DigitalOcean
+    '127.0.0.1',  # Localhost para desarrollo
+    'localhost',  # También puedes incluir 'localhost' para pruebas locales
+    'train-web-ri0a1a9hh-edijavier99s-projects.vercel.app',  # Producción en Vercel
 ]
+
+
 CORS_ALLOWED_ORIGINS = [
-    'https://whale-app-itx3k.ondigitalocean.app', 
-    'http://127.0.0.1:8000',
+    'http://localhost:5173',  # Para desarrollo local
+    'https://train-web-ri0a1a9hh-edijavier99s-projects.vercel.app',  # Para producción en Vercel
+    'https://whale-app-itx3k.ondigitalocean.app',  # Tu URL de producción (según lo que ya tienes configurado)
 ]
 
 
